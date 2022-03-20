@@ -1,4 +1,8 @@
-# NativeBase Expo App
+# ReactNative - NativeBase - Expo App
+
+# Projekt wstępny
+
+![](/ss/logowanie.png)
 
 ## Usage
 
