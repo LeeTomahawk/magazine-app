@@ -1,9 +1,15 @@
-# NativeBase Expo Template
-
-The official NativeBase template for [Expo](https://docs.expo.io/)
+# NativeBase Expo App
 
 ## Usage
 
 ```sh
-expo init my-app --template @native-base/expo-template
+expo install - to install modules
+```
+
+```sh
+expo start - to start app
+```
+
+```sh
+expo start --clear  - to start app and clear cache
 ```
