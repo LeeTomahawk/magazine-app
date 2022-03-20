@@ -3,10 +3,25 @@
 # Projekt wstępny
 
 ![](/ss/logowanie.png)
+
+#
+
 ![](/ss/g%C5%82%C3%B3wna.png)
+
+#
+
 ![](/ss/magazyn.png)
+
+#
+
 ![](/ss/pracownicy.png)
+
+#
+
 ![](/ss/formularz.png)
+
+#
+
 ![](/ss/pobieranie.png)
 
 ## Usage
