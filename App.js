@@ -18,6 +18,7 @@ import {
   Box,
 } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
+import "react-native-gesture-handler";
 import Login from "./components/Login";
 
 export default function App({ navigation }) {

@@ -28,6 +28,7 @@ export default function HomeScreen({ navigation }) {
             _focus={{
               bg: "#9442bd",
             }}
+            onPress={() => navigation.navigate("Magazin")}
           >
             Magazyn
           </Button>
@@ -44,6 +45,7 @@ export default function HomeScreen({ navigation }) {
             _focus={{
               bg: "#9442bd",
             }}
+            onPress={() => navigation.navigate("Workers")}
           >
             Pracownicy
           </Button>
@@ -60,6 +62,7 @@ export default function HomeScreen({ navigation }) {
             _focus={{
               bg: "#9442bd",
             }}
+            onPress={() => navigation.navigate("Management")}
           >
             Zarządzaj magazynem
           </Button>
