@@ -1,5 +1,7 @@
-import { Box, Text, Center, Button, Image } from "native-base";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Box, Text, Center, Button, Image, Icon } from "native-base";
 import * as React from "react";
+import { TouchableOpacity } from "react-native";
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -7,8 +9,8 @@ export default function HomeScreen({ navigation }) {
       <Center px={2} flex={1} w="100%">
         <Image
           alt="Logo"
-          w="150px"
-          h="150px"
+          w="120px"
+          h="120px"
           source={require("../../assets/logo.png")}
         />
         <Text letterSpacing="3" fontSize="20" color="#fff" fontWeight="800">
@@ -28,7 +30,7 @@ export default function HomeScreen({ navigation }) {
             _focus={{
               bg: "#9442bd",
             }}
-            onPress={() => navigation.navigate("Magazin")}
+            onPress={() => navigation.navigate("MagazinDrawer")}
           >
             Magazyn
           </Button>
@@ -65,6 +67,23 @@ export default function HomeScreen({ navigation }) {
             onPress={() => navigation.navigate("Management")}
           >
             Zarządzaj magazynem
+          </Button>
+          <Button
+            borderRadius="full"
+            bg="#993659"
+            m={2}
+            _hover={{
+              bg: "#693659",
+            }}
+            _pressed={{
+              bg: "#693659",
+            }}
+            _focus={{
+              bg: "#693659",
+            }}
+            onPress={() => navigation.navigate("Login")}
+          >
+            Wyloguj się
           </Button>
         </Box>
       </Center>

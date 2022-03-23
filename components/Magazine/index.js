@@ -1,9 +1,10 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
+
 import MagazinComponent from "./MagazinComponent";
 
 const Drawer = createDrawerNavigator();
 
-const Magazin = () => {
+const MagazinDrawer = () => {
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -16,21 +17,11 @@ const Magazin = () => {
         name="MagazinComponent"
         component={MagazinComponent}
         options={{
-          headerShown: true,
-          headerBackVisible: false,
-          title: "Magazyn",
-          headerStyle: {
-            backgroundColor: "#6546d7",
-          },
-          headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontWeight: "bold",
-            color: "#c5c5c5",
-          },
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>
   );
 };
 
-export default Magazin;
+export default MagazinDrawer;
