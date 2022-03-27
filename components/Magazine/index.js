@@ -18,6 +18,7 @@ const MagazinDrawer = () => {
         component={MagazinComponent}
         options={{
           headerShown: false,
+          title: "Strona główna",
         }}
       />
     </Drawer.Navigator>

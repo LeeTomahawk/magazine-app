@@ -6,17 +6,25 @@ import { TouchableOpacity } from "react-native";
 export default function HomeScreen({ navigation }) {
   return (
     <Box flex={1} w="100%" bg="#121212">
-      <Center px={2} flex={1} w="100%">
+      <Center px={0} flex={1} w="100%">
         <Image
           alt="Logo"
-          w="120px"
-          h="120px"
+          w="150px"
+          h="150px"
           source={require("../../assets/logo.png")}
         />
         <Text letterSpacing="3" fontSize="20" color="#fff" fontWeight="800">
           Magazyn
         </Text>
-        <Box p="2" py="8" w="90%" maxW="290">
+        <Box
+          borderColor={"gray.700"}
+          borderWidth="1"
+          py="2"
+          mt="2"
+          w="100%"
+          bg={"#1a1919"}
+        ></Box>
+        <Box px="2" py="6" w="90%" maxW="290">
           <Button
             borderRadius="full"
             bg="#8442bd"
@@ -86,6 +94,14 @@ export default function HomeScreen({ navigation }) {
             Wyloguj się
           </Button>
         </Box>
+        <Box
+          borderColor={"gray.700"}
+          borderWidth="1"
+          py="2"
+          mt="2"
+          w="100%"
+          bg={"#1a1919"}
+        ></Box>
       </Center>
     </Box>
   );

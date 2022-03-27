@@ -74,7 +74,7 @@ export default function WorkersComponent({ navigation }) {
   ];
   return (
     <Box flex={1} w="100%" bg="#121212">
-      <Center px={2} flex={1} w="100%">
+      <Center px={0} flex={1} w="100%">
         <Box p="2" py="8" w="90%" minH="350" maxH="520" maxW="350" zIndex={2}>
           <FlatList
             data={data}
