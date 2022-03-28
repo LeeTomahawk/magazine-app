@@ -1,28 +1,36 @@
 # ReactNative - NativeBase - Expo App
 
-# Projekt wstępny
+# Prototypy ekranów
 
-![](/ss/logowanie.png)
-
-#
-
-![](/ss/g%C5%82%C3%B3wna.png)
+![](./ss/logowanie.ekran.png)
 
 #
 
-![](/ss/magazyn.png)
+![](./ss/stronaglowna.ekran.png)
 
 #
 
-![](/ss/pracownicy.png)
+![](./ss/magazyn.ekran.png)
 
 #
 
-![](/ss/formularz.png)
+![](./ss/koszyk.ekran.png)
 
 #
 
-![](/ss/pobieranie.png)
+![](./ss/pracownicy.ekran.png)
+
+#
+
+![](./ss/dodaj.pracownika.ekran.png)
+
+#
+
+![](./ss/zarzadzanie.magazynem.ekran.png)
+
+#
+
+![](./ss/dodaj.produkt.ekran.png)
 
 ## Usage
 
