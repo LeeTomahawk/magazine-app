@@ -73,24 +73,26 @@ const LoginComponent = ({ navigation }) => {
                 }}
               />
             </FormControl>
-            <Button
-              mt="8"
-              bg="#8442bd"
-              borderRadius="full"
-              onPress={() => navigation.navigate("Home")}
-              _hover={{
-                bg: "#9442bd",
-              }}
-              _pressed={{
-                bg: "#9442bd",
-              }}
-              _focus={{
-                bg: "#9442bd",
-              }}
-            >
-              Zaloguj się
-            </Button>
-            <HStack mt="6" justifyContent="center"></HStack>
+            <HStack justifyContent="center">
+              <Button
+                w={150}
+                mt="5"
+                bg="#8442bd"
+                borderRadius="full"
+                onPress={() => navigation.navigate("Home")}
+                _hover={{
+                  bg: "#9442bd",
+                }}
+                _pressed={{
+                  bg: "#9442bd",
+                }}
+                _focus={{
+                  bg: "#9442bd",
+                }}
+              >
+                Zaloguj się
+              </Button>
+            </HStack>
           </VStack>
         </Box>
         <Box
