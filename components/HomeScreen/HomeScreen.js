@@ -24,7 +24,7 @@ export default function HomeScreen({ navigation }) {
           w="100%"
           bg={"#1a1919"}
         ></Box>
-        <Box px="2" py="6" w="90%" maxW="290">
+        <Box px="2" py="6" w="90%" maxW="290" minH={"1/2"}>
           <Button
             borderRadius="full"
             bg="#8442bd"

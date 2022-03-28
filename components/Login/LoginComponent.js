@@ -33,7 +33,7 @@ const LoginComponent = ({ navigation }) => {
           w="100%"
           bg={"#1a1919"}
         ></Box>
-        <Box safeArea p="2" py="4" w="90%" maxW="290">
+        <Box safeArea p="2" py="4" w="90%" maxW="290" minH={"1/2"}>
           <Heading size="lg" fontWeight="600" color="#ffffff">
             Witaj
           </Heading>
