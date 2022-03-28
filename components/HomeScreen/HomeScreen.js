@@ -38,7 +38,7 @@ export default function HomeScreen({ navigation }) {
             _focus={{
               bg: "#9442bd",
             }}
-            onPress={() => navigation.navigate("MagazinDrawer")}
+            onPress={() => navigation.navigate("Magazin")}
           >
             Magazyn
           </Button>

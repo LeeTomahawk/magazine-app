@@ -3,10 +3,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginComponent from "./LoginComponent";
 import HomeScreen from "../HomeScreen/HomeScreen";
 import CardComponent from "../Magazine/CardComponent";
-import MagazinDrawer from "../Magazine";
 import WorkersComponent from "../Workers/WorkersComponent";
 import ManagementComponent from "../MagazineManagement/ManagementComponent";
 import AddWorkerComponent from "../Workers/AddWorkerComponent";
+import MagazinComponent from "../Magazine/MagazinComponent";
+import ManagementAddProduct from "../MagazineManagement/ManagementAddProduct";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,8 +40,8 @@ const Login = () => {
         }}
       />
       <Stack.Screen
-        name="MagazinDrawer"
-        component={MagazinDrawer}
+        name="Magazin"
+        component={MagazinComponent}
         options={{
           headerShown: true,
           headerBackVisible: true,
@@ -110,6 +111,22 @@ const Login = () => {
         options={{
           headerShown: true,
           title: "Zarządzanie magazynem",
+          headerStyle: {
+            backgroundColor: "#6546d7",
+          },
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#c5c5c5",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="AddProduct"
+        component={ManagementAddProduct}
+        options={{
+          headerShown: true,
+          title: "Dodaj produkt",
           headerStyle: {
             backgroundColor: "#6546d7",
           },
