@@ -1,5 +1,13 @@
 # ReactNative - NativeBase - Expo App
 
+# Przypadki użycia
+
+![](./ss/przypadki.uzycia.admin.png)
+
+#
+
+![](./ss/przypadki.uzycia.pracownik.png)
+
 # Prototypy ekranów
 
 ![](./ss/logowanie.ekran.png)
