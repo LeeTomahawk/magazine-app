@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   HStack,
@@ -11,8 +11,19 @@ import {
   Box,
   Image,
 } from "native-base";
+import { useConfig } from "../../Config/GlobalContext";
 
 const LoginComponent = ({ navigation }) => {
+  const [logInData, setLogInData] = useState({ login: "", password: "" });
+  const { loginUser, user } = useConfig();
+  const handleLogin = async (email, pass) => {
+    try {
+      await loginUser(email, pass);
+      navigation.navigate("Home");
+    } catch (exc) {
+      throw exc;
+    }
+  };
   return (
     <Box flex={1} w="100%" bg="#121212">
       <Center px={0} flex={1} w="100%">
@@ -55,6 +66,9 @@ const LoginComponent = ({ navigation }) => {
                 _focus={{
                   borderColor: "#9442bd",
                 }}
+                onChangeText={(value) =>
+                  setLogInData({ ...logInData, login: value })
+                }
               />
             </FormControl>
             <FormControl>
@@ -71,6 +85,9 @@ const LoginComponent = ({ navigation }) => {
                 _focus={{
                   borderColor: "#9442bd",
                 }}
+                onChangeText={(value) =>
+                  setLogInData({ ...logInData, password: value })
+                }
               />
             </FormControl>
             <HStack justifyContent="center">
@@ -79,7 +96,9 @@ const LoginComponent = ({ navigation }) => {
                 mt="5"
                 bg="#8442bd"
                 borderRadius="full"
-                onPress={() => navigation.navigate("Home")}
+                onPress={() => {
+                  handleLogin(logInData.login, logInData.password);
+                }}
                 _hover={{
                   bg: "#9442bd",
                 }}
