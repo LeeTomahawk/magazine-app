@@ -1,9 +1,13 @@
-import { MaterialIcons } from "@expo/vector-icons";
 import { Box, Text, Center, Button, Image, Icon } from "native-base";
 import * as React from "react";
-import { TouchableOpacity } from "react-native";
+import { useConfig } from "../../Config/GlobalContext";
 
 export default function HomeScreen({ navigation }) {
+  const { logOut, user } = useConfig();
+  const handleLogOut = () => {
+    logOut();
+    navigation.navigate("Login");
+  };
   return (
     <Box flex={1} w="100%" bg="#121212">
       <Center px={0} flex={1} w="100%">
@@ -89,7 +93,7 @@ export default function HomeScreen({ navigation }) {
             _focus={{
               bg: "#693659",
             }}
-            onPress={() => navigation.navigate("Login")}
+            onPress={() => handleLogOut()}
           >
             Wyloguj się
           </Button>

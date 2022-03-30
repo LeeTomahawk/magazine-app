@@ -20,12 +20,15 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import Login from "./components/Login";
+import ConfigProvider from "./Config/GlobalContext";
 
 export default function App({ navigation }) {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <Login />
+        <ConfigProvider>
+          <Login />
+        </ConfigProvider>
       </NavigationContainer>
     </NativeBaseProvider>
   );
