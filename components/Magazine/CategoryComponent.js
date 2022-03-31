@@ -43,8 +43,6 @@ export default function CategoryComponent({ navigation, route }) {
           ? "Monitory"
           : "cos nastepnego",
     });
-    console.log(route);
-
     handleGetItems(categoryName);
   }, []);
   return (
