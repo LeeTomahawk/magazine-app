@@ -12,8 +12,42 @@ import {
   Select,
 } from "native-base";
 import * as React from "react";
+import { useConfig } from "../../Config/GlobalContext";
+import { useState, useEffect } from "react";
+import { Alert } from "react-native";
 
 export default function ManagementAddProduct({ navigation }) {
+  const { addProduct } = useConfig();
+  const [product, setProduct] = useState({
+    category: "",
+    name: "",
+    price: "",
+    count: "",
+  });
+  const handleAddProduct = (product) => {
+    if (
+      product.category === "" ||
+      product.name === "" ||
+      product.price === "" ||
+      product.count === ""
+    ) {
+      Alert.alert("Błąd", "Uzupełnij pola.", [{ text: "Ok", style: "cancel" }]);
+    } else {
+      addProduct(product)
+        .then((val) => {
+          Alert.alert("Dodano", "Dodano produkt.", [
+            { text: "Ok", style: "cancel" },
+          ]);
+        })
+        .catch((exc) => {
+          Alert.alert("Błąd", "Uzupełnij pola.", [
+            { text: "Ok", style: "cancel" },
+          ]);
+          navigation.navigate("AddProduct");
+        });
+      setProduct({});
+    }
+  };
   return (
     <Box flex={1} w="100%" bg="#121212">
       <Center px={4} flex={1} w="100%">
@@ -35,10 +69,14 @@ export default function ManagementAddProduct({ navigation }) {
                 _focus={{
                   borderColor: "#9442bd",
                 }}
+                value={product.category}
+                onValueChange={(val) =>
+                  setProduct({ ...product, category: val })
+                }
               >
-                <Select.Item label="Telefon" value="telefon" />
-                <Select.Item label="Laptop" value="laptop" />
-                <Select.Item label="Monitor" value="monitor" />
+                <Select.Item label="Telefon" value="phones" />
+                <Select.Item label="Laptop" value="laptops" />
+                <Select.Item label="Monitor" value="monitors" />
               </Select>
             </FormControl>
             <FormControl>
@@ -55,6 +93,8 @@ export default function ManagementAddProduct({ navigation }) {
                 _focus={{
                   borderColor: "#9442bd",
                 }}
+                value={product.name}
+                onChangeText={(val) => setProduct({ ...product, name: val })}
               />
             </FormControl>
             <FormControl>
@@ -72,6 +112,8 @@ export default function ManagementAddProduct({ navigation }) {
                 _focus={{
                   borderColor: "#9442bd",
                 }}
+                value={product.count}
+                onChangeText={(val) => setProduct({ ...product, count: val })}
               />
             </FormControl>
             <FormControl>
@@ -89,6 +131,8 @@ export default function ManagementAddProduct({ navigation }) {
                 _focus={{
                   borderColor: "#9442bd",
                 }}
+                value={product.price}
+                onChangeText={(val) => setProduct({ ...product, price: val })}
               />
             </FormControl>
             <Button
@@ -104,6 +148,7 @@ export default function ManagementAddProduct({ navigation }) {
               _focus={{
                 bg: "#9442bd",
               }}
+              onPress={() => handleAddProduct(product)}
             >
               Dodaj produkt
             </Button>

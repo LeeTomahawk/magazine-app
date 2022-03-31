@@ -85,9 +85,25 @@ export default function ConfigProvider({ children }) {
     });
     return workersList;
   };
+  const addProduct = async (product) => {
+    const { name, count, price, category } = product;
+    const ref = await addDoc(collection(database, category), {
+      count,
+      name,
+      price,
+    });
+    return ref;
+  };
   return (
     <AppProvider.Provider
-      value={{ loginUser, logOut, getUserObject, getItems, getWorkers }}
+      value={{
+        loginUser,
+        logOut,
+        getUserObject,
+        getItems,
+        getWorkers,
+        addProduct,
+      }}
     >
       {children}
     </AppProvider.Provider>
