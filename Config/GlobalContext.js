@@ -72,9 +72,22 @@ export default function ConfigProvider({ children }) {
     });
     return itemList;
   };
+  const getWorkers = async () => {
+    const q = query(
+      collection(database, "users"),
+      where("role", "==", "pracownik")
+    );
+    const workers = await getDocs(q);
+    const workersList = [];
+    const data = workers.forEach((i) => {
+      const singleData = { ...i.data() };
+      workersList.push(singleData);
+    });
+    return workersList;
+  };
   return (
     <AppProvider.Provider
-      value={{ loginUser, logOut, getUserObject, getItems }}
+      value={{ loginUser, logOut, getUserObject, getItems, getWorkers }}
     >
       {children}
     </AppProvider.Provider>

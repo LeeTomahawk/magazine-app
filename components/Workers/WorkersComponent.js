@@ -16,68 +16,28 @@ import {
 import * as React from "react";
 import { TouchableOpacity } from "react-native";
 import { Entypo, Ionicons, Octicons } from "@expo/vector-icons";
+import { useConfig } from "../../Config/GlobalContext";
+import { useState, useEffect } from "react";
 
 export default function WorkersComponent({ navigation }) {
-  const data = [
-    {
-      id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-      fullName: "Aafreen Khan",
-    },
-    {
-      id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-      fullName: "Sujitha Mathur",
-    },
-    {
-      id: "58694a0f-3da1-471f-bd96-145571e29d72",
-      fullName: "Anci Barroco",
-    },
-    {
-      id: "68694a0f-3da1-431f-bd56-142371e29d72",
-      fullName: "Aniket Kumar",
-    },
-    {
-      id: "28694a0f-3da1-471f-bd96-142456e29d72",
-      fullName: "Kiara",
-    },
-    {
-      id: "68694a0f-3da1-431f-bd55-142371e29d72",
-      fullName: "Aniket Kumar",
-    },
-    {
-      id: "28694a0f-3da1-471f-bd91-142456e29d72",
-      fullName: "Kiara",
-    },
-    {
-      id: "68694v0f-3da1-431f-bd56-142371e29d72",
-      fullName: "Aniket Kumar",
-    },
-    {
-      id: "2869420f-3da1-471f-bd96-142456e29d72",
-      fullName: "Kiara",
-    },
-    {
-      id: "68694v0f-3da1-431f-bd56-142371e29d721",
-      fullName: "Aniket Kumar",
-    },
-    {
-      id: "2869420f-3da1-471f-bd96-142456e29d73",
-      fullName: "Kiara",
-    },
-    {
-      id: "68694v0f-3da1-4311f-bd56-142371e29d721",
-      fullName: "Aniket Kumar",
-    },
-    {
-      id: "2869420f-3da1-1471f-bd96-142456e29d73",
-      fullName: "Kiara",
-    },
-  ];
+  const { getWorkers, user } = useConfig();
+  const [workers, setWorkers] = useState([]);
+  const handleGetWorkers = async () => {
+    const workers = await getWorkers();
+    setWorkers(workers);
+  };
+  useEffect(() => {
+    handleGetWorkers();
+  }, []);
   return (
     <Box flex={1} w="100%" bg="#121212">
       <Center px={0} flex={1} w="100%">
+        <Box textAlign={"center"}>
+          <Text color={"#fff"}>Liczba pracowników: {workers.length}</Text>
+        </Box>
         <Box p="2" py="8" w="90%" minH="350" maxH="520" maxW="350" zIndex={2}>
           <FlatList
-            data={data}
+            data={workers}
             renderItem={({ item }) => (
               <Box
                 borderBottomWidth="1"
@@ -88,11 +48,18 @@ export default function WorkersComponent({ navigation }) {
               >
                 <HStack space={3} justifyContent="space-between">
                   <Octicons name="person" size={40} color="#c5c5c5" />
-                  <VStack>
+                  <VStack minW={"150"}>
                     <Text color="#fff" bold>
-                      {item.fullName}
+                      {item.name} {item.sname}
                     </Text>
-                    <Text color="coolGray.600">Pracownik</Text>
+                    <Text textAlign={"left"} color="#fff">
+                      {item.email}
+                    </Text>
+                  </VStack>
+                  <VStack>
+                    <Text textAlign={"right"} color="coolGray.600">
+                      Pracownik
+                    </Text>
                   </VStack>
                   <Spacer />
                 </HStack>
