@@ -67,10 +67,9 @@ export default function ConfigProvider({ children }) {
     const items = await getDocs(q);
     const itemList = [];
     const data = items.forEach((i) => {
-      const singleData = { id: i.id, ...i.data() };
+      const singleData = { ...i.data() };
       itemList.push(singleData);
     });
-    console.log(itemList);
     return itemList;
   };
   return (
