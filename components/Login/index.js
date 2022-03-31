@@ -8,6 +8,7 @@ import ManagementComponent from "../MagazineManagement/ManagementComponent";
 import AddWorkerComponent from "../Workers/AddWorkerComponent";
 import MagazinComponent from "../Magazine/MagazinComponent";
 import ManagementAddProduct from "../MagazineManagement/ManagementAddProduct";
+import CategoryComponent from "../Magazine/CategoryComponent";
 
 const Stack = createNativeStackNavigator();
 
@@ -63,6 +64,23 @@ const Login = () => {
           headerShown: true,
           headerBackVisible: true,
           title: "Karta",
+          headerStyle: {
+            backgroundColor: "#6546d7",
+          },
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#c5c5c5",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Category"
+        component={CategoryComponent}
+        options={{
+          headerShown: true,
+          headerBackVisible: true,
+          title: "",
           headerStyle: {
             backgroundColor: "#6546d7",
           },

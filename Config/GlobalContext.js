@@ -19,7 +19,7 @@ import {
   getDoc,
   updateDoc,
 } from "firebase/firestore";
-import { async } from "@firebase/util";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfcTvnYCTJnPiCjPf31BdX_bx4PbIzk5U",
@@ -39,24 +39,44 @@ const database = getFirestore();
 const AppProvider = React.createContext({});
 
 export default function ConfigProvider({ children }) {
-  const [user, setUser] = useState();
-  const [isLogged, setLogged] = useState();
+  const [user, setUser] = useState({});
   const loginUser = async (email, password) => {
     const userc = await signInWithEmailAndPassword(auth, email, password);
-
-    const user = email;
-
-    setUser({ ...userc, external: user });
-    console.log(user);
-    setLogged(true);
+    const userr = await getUser(email);
+    setUser({ ...userc, external: userr });
   };
   const logOut = async () => {
     await signOut(auth);
-    setLogged(false);
     setUser({});
   };
+  const getUser = async (email) => {
+    const q = query(collection(database, "users"), where("email", "==", email));
+    const user = await getDocs(q);
+    const ar = [];
+    const data = user.forEach((da) => {
+      const singleData = { id: da.id, ...da.data() };
+      ar.push(singleData);
+    });
+    return ar[0];
+  };
+  const getUserObject = () => {
+    return user.external;
+  };
+  const getItems = async (category) => {
+    const q = query(collection(database, category));
+    const items = await getDocs(q);
+    const itemList = [];
+    const data = items.forEach((i) => {
+      const singleData = { id: i.id, ...i.data() };
+      itemList.push(singleData);
+    });
+    console.log(itemList);
+    return itemList;
+  };
   return (
-    <AppProvider.Provider value={{ loginUser, logOut }}>
+    <AppProvider.Provider
+      value={{ loginUser, logOut, getUserObject, getItems }}
+    >
       {children}
     </AppProvider.Provider>
   );

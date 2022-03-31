@@ -1,9 +1,11 @@
 import { Box, Text, Center, Button, Image, Icon } from "native-base";
 import * as React from "react";
+import { useState } from "react";
 import { useConfig } from "../../Config/GlobalContext";
 
 export default function HomeScreen({ navigation }) {
-  const { logOut, user } = useConfig();
+  const { logOut, getUserObject } = useConfig();
+  const [user, setUser] = useState(getUserObject());
   const handleLogOut = () => {
     logOut();
     navigation.navigate("Login");
@@ -46,40 +48,44 @@ export default function HomeScreen({ navigation }) {
           >
             Magazyn
           </Button>
-          <Button
-            borderRadius="full"
-            bg="#8442bd"
-            m={2}
-            _hover={{
-              bg: "#9442bd",
-            }}
-            _pressed={{
-              bg: "#9442bd",
-            }}
-            _focus={{
-              bg: "#9442bd",
-            }}
-            onPress={() => navigation.navigate("Workers")}
-          >
-            Pracownicy
-          </Button>
-          <Button
-            borderRadius="full"
-            bg="#8442bd"
-            m={2}
-            _hover={{
-              bg: "#9442bd",
-            }}
-            _pressed={{
-              bg: "#9442bd",
-            }}
-            _focus={{
-              bg: "#9442bd",
-            }}
-            onPress={() => navigation.navigate("Management")}
-          >
-            Zarządzaj magazynem
-          </Button>
+          {user.role === "admin" && (
+            <Button
+              borderRadius="full"
+              bg="#8442bd"
+              m={2}
+              _hover={{
+                bg: "#9442bd",
+              }}
+              _pressed={{
+                bg: "#9442bd",
+              }}
+              _focus={{
+                bg: "#9442bd",
+              }}
+              onPress={() => navigation.navigate("Workers")}
+            >
+              Pracownicy
+            </Button>
+          )}
+          {user.role === "admin" && (
+            <Button
+              borderRadius="full"
+              bg="#8442bd"
+              m={2}
+              _hover={{
+                bg: "#9442bd",
+              }}
+              _pressed={{
+                bg: "#9442bd",
+              }}
+              _focus={{
+                bg: "#9442bd",
+              }}
+              onPress={() => navigation.navigate("Management")}
+            >
+              Zarządzaj magazynem
+            </Button>
+          )}
           <Button
             borderRadius="full"
             bg="#993659"

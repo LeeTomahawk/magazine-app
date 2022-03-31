@@ -68,6 +68,11 @@ export default function MagazinComponent({ navigation }) {
               padding: 20,
               margin: 5,
             }}
+            onPress={() =>
+              navigation.navigate("Category", {
+                categoryName: "phones",
+              })
+            }
           >
             <MaterialIcons size={50} mt={5} name="smartphone" color="#fff" />
             <Text mt={2} color={"#fff"}>
@@ -85,6 +90,11 @@ export default function MagazinComponent({ navigation }) {
               padding: 20,
               margin: 5,
             }}
+            onPress={() =>
+              navigation.navigate("Category", {
+                categoryName: "laptops",
+              })
+            }
           >
             <Entypo name="laptop" size={50} mt={5} color="#fff" />
             <Text mt={2} color={"#fff"}>
@@ -102,6 +112,11 @@ export default function MagazinComponent({ navigation }) {
               padding: 20,
               margin: 5,
             }}
+            onPress={() =>
+              navigation.navigate("Category", {
+                categoryName: "monitors",
+              })
+            }
           >
             <MaterialIcons name="monitor" size={50} mt={5} color="#fff" />
             <Text mt={2} color={"#fff"}>

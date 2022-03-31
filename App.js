@@ -21,6 +21,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import Login from "./components/Login";
 import ConfigProvider from "./Config/GlobalContext";
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(["Setting a timer"]);
 
 export default function App({ navigation }) {
   return (
