@@ -38,14 +38,13 @@ export default function ManagementAddProduct({ navigation }) {
           Alert.alert("Dodano", "Dodano produkt.", [
             { text: "Ok", style: "cancel" },
           ]);
+          setProduct({});
         })
         .catch((exc) => {
           Alert.alert("Błąd", "Uzupełnij pola.", [
             { text: "Ok", style: "cancel" },
           ]);
-          navigation.navigate("AddProduct");
         });
-      setProduct({});
     }
   };
   return (

@@ -94,6 +94,12 @@ export default function ConfigProvider({ children }) {
     });
     return ref;
   };
+  const addWorker = async (worker) => {
+    const { email, password, role, name, sname } = worker;
+    const user = await createUserWithEmailAndPassword(auth, email, password);
+    await addDoc(collection(database, "users"), { email, name, role, sname });
+    return user;
+  };
   return (
     <AppProvider.Provider
       value={{
@@ -103,6 +109,7 @@ export default function ConfigProvider({ children }) {
         getItems,
         getWorkers,
         addProduct,
+        addWorker,
       }}
     >
       {children}
