@@ -24,7 +24,7 @@ import { useConfig } from "../../Config/GlobalContext";
 
 export default function CategoryComponent({ navigation, route }) {
   const [categoryName, setCategoryName] = useState(route.params.categoryName);
-  const { getItems, user } = useConfig();
+  const { getItems, getUserObject, addItemToObject } = useConfig();
   const [items, setItems] = useState([]);
   const handleGetItems = async (categoryName) => {
     const items = await getItems(categoryName);
@@ -45,6 +45,9 @@ export default function CategoryComponent({ navigation, route }) {
     });
     handleGetItems(categoryName);
   }, []);
+  const addItemToCard = (item) => {
+    addItemToObject(item);
+  };
   return (
     <Box flex={1} w="100%" bg="#121212">
       <Center px={0} flex={1} w="100%">
@@ -87,6 +90,9 @@ export default function CategoryComponent({ navigation, route }) {
                             alignItems: "center",
                             padding: 5,
                             margin: 5,
+                          }}
+                          onPress={() => {
+                            addItemToCard(item);
                           }}
                         >
                           <MaterialIcons name="add" size={20} color="#c5c5c5" />

@@ -35,7 +35,9 @@ export default function AddWorkerComponent({ navigation }) {
         worker.cpassword) &&
       worker.password !== worker.cpassword
     ) {
-      Alert.alert("Błąd", "Uzupełnij pola.", [{ text: "Ok", style: "cancel" }]);
+      Alert.alert("Błąd", "Uzupełnij pola lub hasła się różnią.", [
+        { text: "Ok", style: "cancel" },
+      ]);
     } else {
       addWorker(worker)
         .then((val) => {

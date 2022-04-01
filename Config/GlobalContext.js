@@ -18,6 +18,7 @@ import {
   Query,
   getDoc,
   updateDoc,
+  increment,
 } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -40,6 +41,7 @@ const AppProvider = React.createContext({});
 
 export default function ConfigProvider({ children }) {
   const [user, setUser] = useState({});
+  let cardItems = [];
   const loginUser = async (email, password) => {
     const userc = await signInWithEmailAndPassword(auth, email, password);
     const userr = await getUser(email);
@@ -67,8 +69,7 @@ export default function ConfigProvider({ children }) {
     const items = await getDocs(q);
     const itemList = [];
     const data = items.forEach((i) => {
-      const singleData = { ...i.data() };
-      itemList.push(singleData);
+      itemList.push({ id: i.id, ...i.data() });
     });
     return itemList;
   };
@@ -100,6 +101,17 @@ export default function ConfigProvider({ children }) {
     await addDoc(collection(database, "users"), { email, name, role, sname });
     return user;
   };
+  const addItemToObject = (items) => {
+    cardItems.push(items);
+  };
+  const getItemsList = () => {
+    return cardItems;
+  };
+  const removeItemFromList = (id) => {
+    cardItems = cardItems.filter(function (item) {
+      item.id !== id;
+    });
+  };
   return (
     <AppProvider.Provider
       value={{
@@ -110,6 +122,10 @@ export default function ConfigProvider({ children }) {
         getWorkers,
         addProduct,
         addWorker,
+        setUser,
+        addItemToObject,
+        getItemsList,
+        removeItemFromList,
       }}
     >
       {children}

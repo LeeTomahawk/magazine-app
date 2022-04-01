@@ -13,82 +13,38 @@ import {
   Spacer,
   ScrollView,
   Alert,
+  Flex,
+  Heading,
 } from "native-base";
 import * as React from "react";
 import { TouchableOpacity } from "react-native";
 import { Entypo, Ionicons, Octicons } from "@expo/vector-icons";
+import { useConfig } from "../../Config/GlobalContext";
+import { useState, useEffect } from "react";
+import NumericInput from "react-native-numeric-input";
 
 export default function CardComponent({ navigation }) {
-  const data = [
-    {
-      id: "1",
-      nazwa: "Xiaomi 8T",
-      kategoria: "telefon",
-      cena: 500,
-      ilosc: 1,
-    },
-    {
-      id: "2",
-      nazwa: "Xiaomi 9A",
-      kategoria: "telefon",
-      cena: 300,
-      ilosc: 2,
-    },
-    {
-      id: "3",
-      nazwa: "Xiaomi 9A",
-      kategoria: "telefon",
-      cena: 300,
-      ilosc: 2,
-    },
-    {
-      id: "4",
-      nazwa: "Xiaomi 9A",
-      kategoria: "telefon",
-      cena: 300,
-      ilosc: 2,
-    },
-    {
-      id: "5",
-      nazwa: "Xiaomi 9A",
-      kategoria: "telefon",
-      cena: 300,
-      ilosc: 2,
-    },
-    {
-      id: "6",
-      nazwa: "Xiaomi 9A",
-      kategoria: "telefon",
-      cena: 300,
-      ilosc: 2,
-    },
-    {
-      id: "7",
-      nazwa: "Xiaomi 9A",
-      kategoria: "telefon",
-      cena: 300,
-      ilosc: 2,
-    },
-    {
-      id: "8",
-      nazwa: "Xiaomi 9A",
-      kategoria: "telefon",
-      cena: 300,
-      ilosc: 2,
-    },
-    {
-      id: "9",
-      nazwa: "Xiaomi 9A",
-      kategoria: "telefon",
-      cena: 300,
-      ilosc: 2,
-    },
-  ];
+  const { getItemsList, removeItemFromList } = useConfig();
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    //console.log(getItemsList());
+    setItems(getItemsList());
+  }, []);
+  const removeItem = (id) => {
+    let arr = items.filter(function (item) {
+      return item.id !== id;
+    });
+    setItems(arr);
+    removeItemFromList(id);
+  };
   return (
     <Box flex={1} w="100%" bg="#121212">
-      <Box px={5} py={10} w="100%" minH={"4/5"} maxH={"4/5"}>
+      <Box px={2} w="100%" minH={"4/5"} maxH={"4/5"}>
+        <Heading textAlign={"center"} color={"#fff"} my={5} size={"md"}>
+          Dodano {items.length}
+        </Heading>
         <FlatList
-          data={data}
+          data={items}
           renderItem={({ item }) => (
             <Box
               borderBottomWidth="1"
@@ -96,25 +52,41 @@ export default function CardComponent({ navigation }) {
               pl="4"
               pr="5"
               py="2"
+              w={"100%"}
             >
-              <HStack space={3} justifyContent="space-between">
-                <Ionicons name="add-outline" size={30} color="#c5c5c5" />
-                <VStack>
-                  <Text color="#fff" bold>
-                    {item.nazwa}
-                  </Text>
-                  <Text color="coolGray.600">{item.kategoria}</Text>
-                </VStack>
-                <Spacer />
-                <VStack>
-                  <Text fontSize="xs" color="#fff" alignSelf="flex-start">
-                    Cena: {item.cena * item.ilosc} zł
-                  </Text>
-                  <Text fontSize="xs" color="#fff" alignSelf="flex-start">
-                    Ilość: {item.ilosc}
-                  </Text>
-                </VStack>
-              </HStack>
+              <Box flexDirection="row">
+                <Box py={5} flex={5} textAlign={"left"}>
+                  <Text color="#fff">{item.name}</Text>
+                </Box>
+                <Box justifyContent="center" alignItems="center" flex={3}>
+                  <Text color={"#fff"}>Ilość</Text>
+                  <NumericInput
+                    value={1}
+                    totalWidth={50}
+                    totalHeight={40}
+                    type="up-down"
+                    rounded
+                    textColor={"#fff"}
+                    maxValue={99}
+                    minValue={1}
+                    iconStyle={{ color: "#000" }}
+                  />
+                </Box>
+                <Box
+                  justifyContent="center"
+                  alignItems="flex-end"
+                  flex={2}
+                  bg={"red.200"}
+                >
+                  <Button
+                    onPress={() => {
+                      removeItem(item.id);
+                    }}
+                  >
+                    A
+                  </Button>
+                </Box>
+              </Box>
             </Box>
           )}
           keyExtractor={(item) => item.id}

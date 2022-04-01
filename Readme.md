@@ -1,5 +1,10 @@
 # ReactNative - NativeBase - Expo App
 
+# To do
+
+- Stakowanie tych samych elementów w koszyku
+- Ilość itemów w koszyku na głównej stronie magazynu
+
 # Przypadki użycia
 
 ![](./ss/przypadki.uzycia.admin.png)
