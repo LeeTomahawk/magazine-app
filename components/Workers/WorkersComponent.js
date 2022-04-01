@@ -38,7 +38,6 @@ export default function WorkersComponent({ navigation }) {
         <Box p="2" py="8" w="90%" minH="350" maxH="520" maxW="350" zIndex={2}>
           <FlatList
             data={workers}
-            key={({ item }) => item.id}
             renderItem={({ item }) => (
               <Box
                 borderBottomWidth="1"

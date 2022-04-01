@@ -81,7 +81,7 @@ export default function ConfigProvider({ children }) {
     const workers = await getDocs(q);
     const workersList = [];
     const data = workers.forEach((i) => {
-      const singleData = { ...i.data() };
+      const singleData = { id: i.id, ...i.data() };
       workersList.push(singleData);
     });
     return workersList;

@@ -27,7 +27,6 @@ export default function CardComponent({ navigation }) {
   const { getItemsList, removeItemFromList } = useConfig();
   const [items, setItems] = useState([]);
   useEffect(() => {
-    //console.log(getItemsList());
     setItems(getItemsList());
   }, []);
   const removeItem = (id) => {
