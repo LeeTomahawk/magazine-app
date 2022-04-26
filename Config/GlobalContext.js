@@ -103,14 +103,37 @@ export default function ConfigProvider({ children }) {
   };
   const addItemToObject = (items) => {
     cardItems.push(items);
+    //console.log(cardItems);
+    //let arr = cardItems.filter(function (item) {
+    //return item.id.includes(items.id);
+    //});
+    //console.log(arr);
   };
   const getItemsList = () => {
+    let items = [];
+    cardItems.forEach((i) => {
+      const singleData = {
+        id: i.id,
+        name: i.name,
+        price: i.price,
+        itemcount: i.itemcount,
+      };
+      items.push(singleData);
+    });
+    cardItems = items;
     return cardItems;
   };
-  const removeItemFromList = (id) => {
-    cardItems = cardItems.filter(function (item) {
-      item.id !== id;
+  const setItemCount = (id, val) => {
+    let items = [];
+    cardItems.forEach((i) => {
+      if (i.id === id) {
+        i.itemcount = val;
+      }
     });
+    console.log(cardItems);
+  };
+  const removeItemFromList = (arr) => {
+    cardItems = arr;
   };
   return (
     <AppProvider.Provider
@@ -126,6 +149,7 @@ export default function ConfigProvider({ children }) {
         addItemToObject,
         getItemsList,
         removeItemFromList,
+        setItemCount,
       }}
     >
       {children}

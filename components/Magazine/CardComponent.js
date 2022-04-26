@@ -18,14 +18,20 @@ import {
 } from "native-base";
 import * as React from "react";
 import { TouchableOpacity } from "react-native";
-import { Entypo, Ionicons, Octicons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Octicons,
+} from "@expo/vector-icons";
 import { useConfig } from "../../Config/GlobalContext";
 import { useState, useEffect } from "react";
 import NumericInput from "react-native-numeric-input";
 
 export default function CardComponent({ navigation }) {
-  const { getItemsList, removeItemFromList } = useConfig();
-  const [items, setItems] = useState([]);
+  const { getItemsList, removeItemFromList, setItemCount } = useConfig();
+  let [items, setItems] = useState([]);
   useEffect(() => {
     setItems(getItemsList());
   }, []);
@@ -34,7 +40,10 @@ export default function CardComponent({ navigation }) {
       return item.id !== id;
     });
     setItems(arr);
-    removeItemFromList(id);
+    removeItemFromList(arr);
+  };
+  const addCount = (id, val) => {
+    setItemCount(id, val);
   };
   return (
     <Box flex={1} w="100%" bg="#121212">
@@ -43,7 +52,7 @@ export default function CardComponent({ navigation }) {
           Dodano {items.length}
         </Heading>
         <FlatList
-          data={items}
+          data={items.filter((val, id) => items.indexOf(val) !== id)}
           renderItem={({ item }) => (
             <Box
               borderBottomWidth="1"
@@ -56,11 +65,12 @@ export default function CardComponent({ navigation }) {
               <Box flexDirection="row">
                 <Box py={5} flex={5} textAlign={"left"}>
                   <Text color="#fff">{item.name}</Text>
+                  <Text color="#fff">Cena: {item.price} zł/szt</Text>
                 </Box>
                 <Box justifyContent="center" alignItems="center" flex={3}>
                   <Text color={"#fff"}>Ilość</Text>
                   <NumericInput
-                    value={1}
+                    value={item.itemcount}
                     totalWidth={50}
                     totalHeight={40}
                     type="up-down"
@@ -69,26 +79,38 @@ export default function CardComponent({ navigation }) {
                     maxValue={99}
                     minValue={1}
                     iconStyle={{ color: "#000" }}
+                    onChange={(x) => {
+                      addCount(item.id, x);
+                    }}
                   />
                 </Box>
-                <Box
-                  justifyContent="center"
-                  alignItems="flex-end"
-                  flex={2}
-                  bg={"red.200"}
-                >
-                  <Button
+                <Box justifyContent="center" alignItems="flex-end" flex={2}>
+                  <TouchableOpacity
+                    style={{
+                      backgroundColor: "#DF1B1B",
+                      borderRadius: 100,
+                      width: 30,
+                      height: 30,
+                      alignItems: "center",
+                      padding: 5,
+                      margin: 5,
+                    }}
                     onPress={() => {
                       removeItem(item.id);
                     }}
                   >
-                    A
-                  </Button>
+                    <MaterialIcons name="delete" size={20} color="#c5c5c5" />
+                  </TouchableOpacity>
                 </Box>
+              </Box>
+              <Box justifyContent="center" alignItems="flex-end" flex={2}>
+                <Text color={"#fff"}>
+                  Łącznie: {item.price * item.itemcount}
+                </Text>
               </Box>
             </Box>
           )}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item, index) => item.id}
         />
       </Box>
       <HStack pt={5} space={3} justifyContent="center">
@@ -101,7 +123,7 @@ export default function CardComponent({ navigation }) {
             alignItems: "center",
             padding: 15,
           }}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => console.log(items)}
         >
           <Text color={"#fff"} fontWeight={"bold"}>
             Potwierdź
