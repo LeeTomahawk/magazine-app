@@ -136,7 +136,9 @@ export default function ConfigProvider({ children }) {
     cardItems = arr;
   };
 
-  const updateItemsListInDatabase = (items) => {};
+  const updateItemsListInDatabase = (items) => {
+    items.forEach((i) => {});
+  };
   return (
     <AppProvider.Provider
       value={{
