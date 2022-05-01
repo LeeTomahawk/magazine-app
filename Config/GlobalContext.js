@@ -102,12 +102,13 @@ export default function ConfigProvider({ children }) {
     return user;
   };
   const addItemToObject = (items) => {
-    cardItems.push(items);
-    //console.log(cardItems);
-    //let arr = cardItems.filter(function (item) {
-    //return item.id.includes(items.id);
-    //});
-    //console.log(arr);
+    let itm;
+    cardItems.forEach((i) => {
+      if (i.id === items.id) {
+        itm = true;
+      }
+    });
+    if (itm != true) cardItems.push(items);
   };
   const getItemsList = () => {
     let items = [];
@@ -130,11 +131,12 @@ export default function ConfigProvider({ children }) {
         i.itemcount = val;
       }
     });
-    console.log(cardItems);
   };
   const removeItemFromList = (arr) => {
     cardItems = arr;
   };
+
+  const updateItemsListInDatabase = (items) => {};
   return (
     <AppProvider.Provider
       value={{
@@ -150,6 +152,7 @@ export default function ConfigProvider({ children }) {
         getItemsList,
         removeItemFromList,
         setItemCount,
+        updateItemsListInDatabase,
       }}
     >
       {children}

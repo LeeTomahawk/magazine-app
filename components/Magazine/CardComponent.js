@@ -52,7 +52,7 @@ export default function CardComponent({ navigation }) {
           Dodano {items.length}
         </Heading>
         <FlatList
-          data={items.filter((val, id) => items.indexOf(val) !== id)}
+          data={items}
           renderItem={({ item }) => (
             <Box
               borderBottomWidth="1"
@@ -103,33 +103,30 @@ export default function CardComponent({ navigation }) {
                   </TouchableOpacity>
                 </Box>
               </Box>
-              <Box justifyContent="center" alignItems="flex-end" flex={2}>
-                <Text color={"#fff"}>
-                  Łącznie: {item.price * item.itemcount}
-                </Text>
-              </Box>
             </Box>
           )}
           keyExtractor={(item, index) => item.id}
         />
       </Box>
-      <HStack pt={5} space={3} justifyContent="center">
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#1ab844",
-            borderRadius: 50,
-            width: 175,
-            height: 50,
-            alignItems: "center",
-            padding: 15,
-          }}
-          onPress={() => console.log(items)}
-        >
-          <Text color={"#fff"} fontWeight={"bold"}>
-            Potwierdź
-          </Text>
-        </TouchableOpacity>
-      </HStack>
+      {items.length > 0 && (
+        <HStack pt={5} space={3} justifyContent="center">
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#1ab844",
+              borderRadius: 50,
+              width: 175,
+              height: 50,
+              alignItems: "center",
+              padding: 15,
+            }}
+            onPress={() => navigation.navigate("Summary", items)}
+          >
+            <Text color={"#fff"} fontWeight={"bold"}>
+              Potwierdź
+            </Text>
+          </TouchableOpacity>
+        </HStack>
+      )}
     </Box>
   );
 }

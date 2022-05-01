@@ -9,6 +9,7 @@ import AddWorkerComponent from "../Workers/AddWorkerComponent";
 import MagazinComponent from "../Magazine/MagazinComponent";
 import ManagementAddProduct from "../MagazineManagement/ManagementAddProduct";
 import CategoryComponent from "../Magazine/CategoryComponent";
+import SummaryComponent from "../Magazine/SummaryComponent";
 
 const Stack = createNativeStackNavigator();
 
@@ -145,6 +146,22 @@ const Login = () => {
         options={{
           headerShown: true,
           title: "Dodaj produkt",
+          headerStyle: {
+            backgroundColor: "#6546d7",
+          },
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#c5c5c5",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Summary"
+        component={SummaryComponent}
+        options={{
+          headerShown: true,
+          title: "Podsumowanie",
           headerStyle: {
             backgroundColor: "#6546d7",
           },
